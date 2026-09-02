@@ -3,7 +3,7 @@ package clue;
 import java.lang.ref.Cleaner;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Collections;
 public class Clue {
     private int id;
     private String name;
@@ -28,13 +28,18 @@ public class Clue {
         return this.name;
     }
     public List<ClueFragment> getClueFragment() {
-        return this.clueFragment;
+        return Collections.unmodifiableList(this.clueFragment);
     }
     public void addFragment(ClueFragment clueFragment) {
         if(clueFragment == null || clueFragment.getClue() != this) {
             throw new IllegalArgumentException("The Fragment doesn't belong to this Clue");
         }
         for(ClueFragment existingFragment : this.clueFragment) {
+            if (existingFragment.getId() == clueFragment.getId()) {
+                throw new IllegalArgumentException(
+                        "Fragment id already exists"
+                );
+            }
             if(existingFragment.getPart() == clueFragment.getPart()) {
                 throw new IllegalArgumentException("The Fragment part already exists");
             }

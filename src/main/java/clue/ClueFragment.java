@@ -23,4 +23,19 @@ public class ClueFragment {
     public Clue getClue() {
         return this.clue;
     }
+    @Override
+    public boolean equals(Object obj) {
+     if(this  == obj) {
+         return true;
+     }
+     if(obj == null || getClass() != obj.getClass()) {
+         return false;
+     }
+     ClueFragment other = (ClueFragment) obj;
+     return this.id == other.id;
+    }
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(this.id);
+    }
 }

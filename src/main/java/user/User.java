@@ -4,6 +4,7 @@ import pack.Pack;
 import user.currencies.ShardPouch;
 import user.inventory.CardInventory;
 import user.inventory.ClueFragmentInventory;
+import user.inventory.ClueInventory;
 import user.inventory.PackInventory;
 
 public class User {
@@ -13,6 +14,7 @@ public class User {
     private PackInventory packInventory = new PackInventory();
     private CardInventory cardInventory = new CardInventory();
     private ClueFragmentInventory clueFragmentInventory = new ClueFragmentInventory();
+    private ClueInventory clueInventory = new ClueInventory();
 //    Constructor
     public User(int id, String name) {
         setId(id);
@@ -56,5 +58,9 @@ public class User {
 //Clue Fragment Inventory
     public ClueFragmentInventory getClueFragmentInventory() {
         return this.clueFragmentInventory;
+    }
+//Clue Inventory
+    public ClueInventory getClueInventory() {
+        return this.clueInventory;
     }
 }

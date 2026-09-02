@@ -3,6 +3,9 @@ package clue;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestClue {
     @Test
     public void testClueFragment() {
@@ -67,6 +70,28 @@ public class TestClue {
         Clue clue = new Clue(1,"Frozen Lake of Aggeudrok",4);
         ClueFragment clueFragment1 = new ClueFragment(1,clue,4,"...deepest desire");
         ClueFragment clueFragment2 = new ClueFragment(2,clue,4,"...d##p33t %35!&E");
+        clue.addFragment(clueFragment1);
+        clue.addFragment(clueFragment2);
+    }
+    @Test(
+            expectedExceptions = IllegalArgumentException.class,
+            expectedExceptionsMessageRegExp = "The Fragment part already exists"
+    )
+    public void testAddingSameClueFragment2(){
+        Clue clue = new Clue(1,"Tears of Asmanama",2);
+        ClueFragment clueFragment1 = new ClueFragment(1,clue,1,"@!_#%%*%*");
+        ClueFragment clueFragment2 = new ClueFragment(2,clue,1,"@!_#%%*%*");
+        clue.addFragment(clueFragment1);
+        clue.addFragment(clueFragment2);
+    }
+    @Test(
+            expectedExceptions = IllegalArgumentException.class,
+            expectedExceptionsMessageRegExp = "Fragment id already exists"
+    )
+    public void testAddingSameClueFragment3(){
+        Clue clue = new Clue(1,"Tears of Asmanama",2);
+        ClueFragment clueFragment1 = new ClueFragment(1,clue,1,"@!_#%%*%*");
+        ClueFragment clueFragment2 = new ClueFragment(1,clue,2,"21-355858");
         clue.addFragment(clueFragment1);
         clue.addFragment(clueFragment2);
     }
